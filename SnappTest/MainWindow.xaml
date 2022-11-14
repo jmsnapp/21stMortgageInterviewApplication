@@ -1,0 +1,60 @@
+﻿<Window x:Class="SnappTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SnappTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="DefaultColor">
+            <Setter Property="Foreground" Value="Red" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="GreenText">
+            <Setter Property="Foreground" Value="Green" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="User Input:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="48" Margin="15"/>
+            <TextBox Grid.Column="1" Name="txtInput" Text="{Binding InputString}" BorderThickness="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="24" Margin="15" TextWrapping="Wrap"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Name="btnFindLargest" Command="{Binding GetMaxCommand}" BorderThickness="1" Margin="15">
+                <TextBlock TextAlignment="Center" Text="Find Largest Value" TextWrapping="Wrap" FontSize="24"/>
+            </Button>
+            <Button Grid.Column="1" Name="btnFindOdd"  Command="{Binding SumOddCommand}" BorderThickness="1" Margin="15">
+                <TextBlock TextAlignment="Center" Text="Find Sum of Odd Numbers" TextWrapping="Wrap"  FontSize="24"/>
+            </Button>
+            <Button Grid.Column="2" Name="btnFindEven"  Command="{Binding SumEvenCommand}" BorderThickness="1" Margin="15">
+                <TextBlock TextAlignment="Center" Text="Find Sum of Even Numbers" TextWrapping="Wrap"  FontSize="24"/>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Results:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="48"  Margin="15"/>
+            <TextBox Grid.Column="1" Name="txtResults" Text="{Binding ResultString}" Style="{StaticResource DefaultColor}" BorderThickness="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontFamily="Arial" IsReadOnly="True" Margin="15" TextChanged="txtResults_TextChanged">
+            </TextBox>
+        </Grid>
+    </Grid>
+</Window>
